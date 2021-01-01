@@ -1,5 +1,7 @@
 # Chat App
 
+![Alt Text](https://media.giphy.com/media/4hMsuCzJQU3rvw190k/giphy.gif)
+
 ## Overall Structure
 This basic application is completely done with JavaScript. I used Node.js to make this 
 application.
@@ -13,6 +15,6 @@ application.
 - moment
 - qs
 
-![Alt Text](https://media.giphy.com/media/4hMsuCzJQU3rvw190k/giphy.gif)
+## Example of socket.io Server
 
-## Quick Demo of App
+![Alt Text](/Users/aaroncygnarowicz/Desktop/coding/chat-app/Socket.io-example.png)
