@@ -17,4 +17,4 @@ application.
 
 ## Example of socket.io Server
 
-![Alt Text](/Users/aaroncygnarowicz/Desktop/coding/chat-app/Socket.io-example.png)
+![Alt Text](Socket.io-example.png)
