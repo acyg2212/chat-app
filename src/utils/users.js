@@ -1,8 +1,8 @@
 const users = []
 
-const addUser = ({ id, username, room }) => {
+const addUser = ({ id, username, Room }) => {
     username = username.trim().toLowerCase()
-    room = room.trim().toLowerCase()
+    room = Room.trim().toLowerCase()
 
     if (!username || !room) {
         return {
