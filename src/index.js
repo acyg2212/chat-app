@@ -17,10 +17,14 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 
-    socket.emit('message', generateMessage('Welcome!'))
-    socket.broadcast.emit('message', generateMessage("A new user has joined the chat"))
+    socket.on('join', ({ username, Room }) => {
+        socket.join(Room)
+        console.log(username)
 
-    socket.on('message', (input, callback) => {
+        socket.emit('message', generateMessage('Welcome!'))
+        socket.broadcast.to(Room).emit('message', generateMessage(`${username} has joined the room!`))
+    })
+    socket.on('sendMessage', (input, callback) => {
         const filter = new Filter()
         if (filter.isProfane(input)) {
             return callback('Profanity is not allowed')

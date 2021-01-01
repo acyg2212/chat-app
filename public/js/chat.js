@@ -1,16 +1,23 @@
 const socket = io()
 
+//elements
 const $messageForm = document.querySelector('#message-form');
 const $messageFormInput = $messageForm.querySelector('#chatInput');
 const $messageFormButton = $messageForm.querySelector('button');
 const $sendLocationButton = document.querySelector('#send-location');
 const $messages = document.querySelector('#messages')
 
+//temolates
 const messageTemplate = document.querySelector('#message-template').innerHTML;
 const locationTemplate = document.querySelector('#location-template').innerHTML;
 
+////Options
+const { username, Room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+
+
 socket.on("message", (welcomeData) => {
     console.log(welcomeData)
+
     const html = Mustache.render(messageTemplate, {
         message: welcomeData.text,
         createdAt: moment(welcomeData.createdAt).format('h:mm a')
@@ -33,7 +40,7 @@ $messageForm.addEventListener('submit', (e) => {
 
     let input = document.querySelector("#chatInput").value
 
-    socket.emit('message', input, error => {
+    socket.emit('sendMessage', input, error => {
         $messageFormButton.removeAttribute('disabled')
         $messageFormInput.value = ''
         $messageFormInput.focus()
@@ -60,3 +67,5 @@ $sendLocationButton.addEventListener('click', () => {
         })
     })
 })
+
+socket.emit('join', { username, Room })
